@@ -1,18 +1,20 @@
 package piercestudio.com.listmaker;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-public class MainActivity extends Activity {
+import android.widget.LinearLayout;
+
+
+public class MainActivity extends Activity implements UserEntryDialogFragment.UserEntryDialogFragmentListener{
 
 
     LinearLayout listLayout;
@@ -33,6 +35,8 @@ public class MainActivity extends Activity {
 
     }
 
+
+
     OnClickListener addButton = new OnClickListener(){
 
         public void onClick(View v){
@@ -41,14 +45,24 @@ public class MainActivity extends Activity {
             newButton.setTag(Integer.toString(buttonCount));
             newButton.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             listLayout.addView(newButton);
+
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            UserEntryDialogFragment userEntryDialogFragment = new UserEntryDialogFragment();
+            userEntryDialogFragment.show(fragmentTransaction, "asdf");
+
+            String entry = Character.toString(userEntryDialogFragment.args.getChar("key"));
+
+            newButton.setText(entry);
             newButton.setOnClickListener(addButton);
-
-            EditText buttonText = new EditText(MainActivity.this);
-            newButton.addView(buttonText);
-
-
         }
 
     };
+
+    @Override
+    public String getUserEntry(DialogFragment dialog){
+        String userEntryString = "";
+        return userEntryString;
+
+    }
 
 }
