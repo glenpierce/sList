@@ -15,12 +15,15 @@ public class UserEntryDialogFragment extends DialogFragment {
 
     public static final Bundle args = new Bundle();
 
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.entry_dialog, null));
+
+        //In our attempts to instantiate the EditText, we have not yet found a means by which we can do so without a null pointer exception - see notes below
 
 //        EditText userEntryEditText;
 //        userEntryEditText = userEntryEditText.findViewById(R.id.entryDialogEditText); - may not have been initalized
@@ -30,16 +33,19 @@ public class UserEntryDialogFragment extends DialogFragment {
 //        EditText userEntryEditText = new userEntryEditText.findViewWithTag("edittexttag"); - findViewWithTag not a method
 //        inflater.inflate(R.id.entryDialogEditText, null); - requires a layout argument
 
-                userEntryEditText.requestFocus();
+        //This should work once the EditText has been instantiated
+//                userEntryEditText.requestFocus();
 
         builder.setMessage(R.string.entry)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
 
-                        String getTextString = userEntryEditText.getText().toString();
-                        char[] charArray = getTextString.toCharArray();
-                        args.putCharArray("key", charArray);
+                        //Since the EditText hasn't been instantiated, we have to wait before we can send data through the Bundle
+
+//                        String getTextString = userEntryEditText.getText().toString();
+//                        char[] charArray = getTextString.toCharArray();
+//                        args.putCharArray(getString(R.string.userentrykey), charArray);
                         dismiss();
 
                     }

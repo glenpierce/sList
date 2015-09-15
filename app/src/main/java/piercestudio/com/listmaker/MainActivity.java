@@ -48,9 +48,9 @@ public class MainActivity extends Activity implements UserEntryDialogFragment.Us
 
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             UserEntryDialogFragment userEntryDialogFragment = new UserEntryDialogFragment();
-            userEntryDialogFragment.show(fragmentTransaction, "asdf");
+            userEntryDialogFragment.show(fragmentTransaction, getString(R.string.userEntryDialogFragmentTag));
 
-            String entry = Character.toString(userEntryDialogFragment.args.getChar("key"));
+            String entry = Character.toString(userEntryDialogFragment.args.getChar(getString(R.string.userentrykey)));
 
             newButton.setText(entry);
             newButton.setOnClickListener(addButton);
