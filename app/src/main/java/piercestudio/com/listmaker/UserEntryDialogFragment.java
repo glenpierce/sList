@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class UserEntryDialogFragment extends DialogFragment {
@@ -21,8 +22,15 @@ public class UserEntryDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.entry_dialog, null));
 
-        final EditText userEntryEditText = (EditText) getView().findViewById(R.id.entryDialogEditText);
-        userEntryEditText.requestFocus();
+//        EditText userEntryEditText;
+//        userEntryEditText = userEntryEditText.findViewById(R.id.entryDialogEditText); - may not have been initalized
+//        final EditText userEntryEditText = (EditText) userEntryEditText.findViewById(R.id.entryDialogEditText); - variable may not have been initiized
+//        final EditText = new EditText(); - not a valid constructor
+//        final EditText = new (EditText) userEntryEditText.findViewById(R.id.entryDialogEditText); - cannot resolve symbol userEntryText
+//        EditText userEntryEditText = new userEntryEditText.findViewWithTag("edittexttag"); - findViewWithTag not a method
+//        inflater.inflate(R.id.entryDialogEditText, null); - requires a layout argument
+
+                userEntryEditText.requestFocus();
 
         builder.setMessage(R.string.entry)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
