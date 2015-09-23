@@ -7,47 +7,34 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.util.Log;
 
 
 public class UserEntryDialogFragment extends DialogFragment {
 
     public static final Bundle args = new Bundle();
+	public String getTextString = "default";
 
+	EditText editText = new EditText(getActivity());
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.entry_dialog, null));
+        View v = inflater.inflate(R.layout.entry_dialog, null);
 
-        //In our attempts to instantiate the EditText, we have not yet found a means by which we can do so without a null pointer exception - see notes below
+        editText = (EditText) v.findViewById(R.id.entryDialogEditText);
 
-//        EditText userEntryEditText;
-//        userEntryEditText = userEntryEditText.findViewById(R.id.entryDialogEditText); - may not have been initalized
-//        final EditText userEntryEditText = (EditText) userEntryEditText.findViewById(R.id.entryDialogEditText); - variable may not have been initiized
-//        final EditText = new EditText(); - not a valid constructor
-//        final EditText = new (EditText) userEntryEditText.findViewById(R.id.entryDialogEditText); - cannot resolve symbol userEntryText
-//        EditText userEntryEditText = new userEntryEditText.findViewWithTag("edittexttag"); - findViewWithTag not a method
-//        inflater.inflate(R.id.entryDialogEditText, null); - requires a layout argument
-
-        //This should work once the EditText has been instantiated
-//                userEntryEditText.requestFocus();
+        builder.setView(v);
 
         builder.setMessage(R.string.entry)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-
-                        //Since the EditText hasn't been instantiated, we have to wait before we can send data through the Bundle
-
-//                        String getTextString = userEntryEditText.getText().toString();
-//                        char[] charArray = getTextString.toCharArray();
-//                        args.putCharArray(getString(R.string.userentrykey), charArray);
                         dismiss();
-
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -59,8 +46,11 @@ public class UserEntryDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    public interface UserEntryDialogFragmentListener {
-        public String getUserEntry(DialogFragment dialog);
+	public String getEditText(){
+		return editText.getText().toString();
+	}
 
+    public interface UserEntryDialogFragmentListener {
+        public String getUserEntry(UserEntryDialogFragment dialog);
     }
 }

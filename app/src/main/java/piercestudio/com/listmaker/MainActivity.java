@@ -19,6 +19,7 @@ public class MainActivity extends Activity implements UserEntryDialogFragment.Us
 
     LinearLayout listLayout;
     int buttonCount;
+    String userEntry = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +51,17 @@ public class MainActivity extends Activity implements UserEntryDialogFragment.Us
             UserEntryDialogFragment userEntryDialogFragment = new UserEntryDialogFragment();
             userEntryDialogFragment.show(fragmentTransaction, getString(R.string.userEntryDialogFragmentTag));
 
-            String entry = Character.toString(userEntryDialogFragment.args.getChar(getString(R.string.userentrykey)));
+			userEntry = getUserEntry(userEntryDialogFragment);
 
-            newButton.setText(entry);
+            newButton.setText(userEntry);
             newButton.setOnClickListener(addButton);
         }
 
     };
 
     @Override
-    public String getUserEntry(DialogFragment dialog){
-        String userEntryString = "";
-        return userEntryString;
+    public String getUserEntry(UserEntryDialogFragment dialog){
+        return dialog.getEditText();
 
     }
 
