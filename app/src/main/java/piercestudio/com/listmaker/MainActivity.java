@@ -36,8 +36,6 @@ public class MainActivity extends Activity implements UserEntryDialogFragment.Us
 
     }
 
-
-
     OnClickListener addButton = new OnClickListener(){
 
         public void onClick(View v){
@@ -49,19 +47,17 @@ public class MainActivity extends Activity implements UserEntryDialogFragment.Us
 
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             UserEntryDialogFragment userEntryDialogFragment = new UserEntryDialogFragment();
+			UserEntryDialogFragment.setButton(newButton);
+
             userEntryDialogFragment.show(fragmentTransaction, getString(R.string.userEntryDialogFragmentTag));
 
-			userEntry = getUserEntry(userEntryDialogFragment);
-
-            newButton.setText(userEntry);
             newButton.setOnClickListener(addButton);
         }
 
     };
 
     @Override
-    public String getUserEntry(UserEntryDialogFragment dialog){
-        return dialog.getEditText();
+    public void getUserEntry(UserEntryDialogFragment dialog, Button button){
 
     }
 
