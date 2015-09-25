@@ -4,21 +4,20 @@ package piercestudio.com.listmaker;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.os.Bundle;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.util.Log;
+
 
 
 public class UserEntryDialogFragment extends DialogFragment {
 
     public static final Bundle args = new Bundle();
 
-//	EditText editText = new EditText(getActivity());
 	static Button mButton;
 
 
@@ -30,8 +29,9 @@ public class UserEntryDialogFragment extends DialogFragment {
         View v = inflater.inflate(R.layout.entry_dialog, null);
 
 		final EditText editText = (EditText) v.findViewById(R.id.entryDialogEditText);
+		editText.requestFocus();
+		builder.setView(v);
 
-        builder.setView(v);
 
         builder.setMessage(R.string.entry)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
@@ -43,17 +43,19 @@ public class UserEntryDialogFragment extends DialogFragment {
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dismiss();
-                    }
+					}
                 });
         // Create the AlertDialog object and return it
-        return builder.create();
+
+		Dialog dialog = builder.create();
+		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_MODE_CHANGED);
+
+        return dialog;
     }
 
 	static public void setButton(Button button){
 		mButton = button;
 	}
 
-	public interface UserEntryDialogFragmentListener {
-        public void getUserEntry(UserEntryDialogFragment dialog, Button button);
-    }
+
 }

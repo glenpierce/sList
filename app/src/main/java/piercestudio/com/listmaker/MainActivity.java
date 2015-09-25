@@ -6,15 +6,18 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.util.Log;
 
 import android.widget.LinearLayout;
 
 
-public class MainActivity extends Activity implements UserEntryDialogFragment.UserEntryDialogFragmentListener{
+public class MainActivity extends Activity{
 
 
     LinearLayout listLayout;
@@ -52,13 +55,17 @@ public class MainActivity extends Activity implements UserEntryDialogFragment.Us
             userEntryDialogFragment.show(fragmentTransaction, getString(R.string.userEntryDialogFragmentTag));
 
             newButton.setOnClickListener(addButton);
+//			newButton.setOnTouchListener(newTouchListener);
         }
 
     };
 
-    @Override
-    public void getUserEntry(UserEntryDialogFragment dialog, Button button){
-
-    }
+//	View.OnTouchListener newTouchListener = new View.OnTouchListener() {
+//		@Override
+//		public boolean onTouch(View v, MotionEvent event) {
+//			Log.i("asdf", Float.toString(event.getX()));
+//			return false;
+//		}
+//	};
 
 }
