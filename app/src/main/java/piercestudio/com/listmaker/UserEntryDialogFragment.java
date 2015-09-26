@@ -7,10 +7,12 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.util.Log;
 
 
 
@@ -30,6 +32,9 @@ public class UserEntryDialogFragment extends DialogFragment {
 
 		final EditText editText = (EditText) v.findViewById(R.id.entryDialogEditText);
 		editText.requestFocus();
+
+//        v.setOnTouchListener(onTouchListener);
+
 		builder.setView(v);
 
 
@@ -56,6 +61,5 @@ public class UserEntryDialogFragment extends DialogFragment {
 	static public void setButton(Button button){
 		mButton = button;
 	}
-
 
 }

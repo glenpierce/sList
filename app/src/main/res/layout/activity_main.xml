@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:tag="1"
-        android:text="item 1"/>
+        android:text="New List :) Tap here to add a new item, swipe right to delete one"/>
 
     </LinearLayout>
 
