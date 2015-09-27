@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.util.Log;
+import android.os.SystemClock;
 
 import android.widget.LinearLayout;
 
@@ -25,6 +26,7 @@ public class MainActivity extends Activity
 	LinearLayout listLayout;
 	int buttonCount;
 	float startingX, endingX;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -71,6 +73,7 @@ public class MainActivity extends Activity
 		public boolean onTouch(View v, MotionEvent event)
 		{
 
+			Long downTime = 0L;
 			int maskedAction = event.getActionMasked();
 
 			switch (maskedAction)
@@ -80,6 +83,7 @@ public class MainActivity extends Activity
 				case MotionEvent.ACTION_POINTER_DOWN:
 				{
 					startingX = event.getX();
+					downTime = System.currentTimeMillis();
 					break;
 				}
 				case MotionEvent.ACTION_UP:
@@ -87,6 +91,11 @@ public class MainActivity extends Activity
 				{
 					if (startingX - event.getX() > 200){
 						((ViewGroup)v.getParent()).removeView(v);
+					}
+					Log.i("asdf", String.valueOf(SystemClock.currentThreadTimeMillis()));
+					downTime = SystemClock.currentThreadTimeMillis() - downTime;
+					if(downTime > 200 && downTime != 0L){
+						Log.i("asdf", String.valueOf(downTime));
 					}
 				}
 
