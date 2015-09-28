@@ -1,12 +1,9 @@
 package piercestudio.com.listmaker;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +12,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.util.Log;
 import android.os.SystemClock;
-
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity
 {
-
 
 	LinearLayout listLayout;
 	int buttonCount;
@@ -40,8 +36,6 @@ public class MainActivity extends Activity
 		firstButton.setOnClickListener(addButton);
 
 		buttonCount = 1;
-
-
 	}
 
 	OnClickListener addButton = new OnClickListener()
@@ -50,19 +44,36 @@ public class MainActivity extends Activity
 		public void onClick(View v)
 		{
 			buttonCount++;
-			Button newButton = new Button(MainActivity.this);
-			newButton.setTag(Integer.toString(buttonCount));
-			newButton.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-			listLayout.addView(newButton);
+
+//			Button newButton = new Button(MainActivity.this);
+
+			LinearLayout newLinearLayout;
+			newLinearLayout = new LinearLayout(getApplicationContext());
+			LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+			View layoutView = inflater.inflate(R.layout.new_linear_layout, null);
+			newLinearLayout = (LinearLayout) layoutView.findViewById(R.id.newlinearlayout);
+
+			TextView textView = (TextView) layoutView.findViewById(R.id.textview);
+			Log.i("asdf at textview init", textView.getText().toString());
+
+//			newButton.setTag(Integer.toString(buttonCount));
+			newLinearLayout.setTag(Integer.toString(buttonCount));
+
+//			newButton.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			newLinearLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
+//			listLayout.addView(newButton);
+			listLayout.addView(newLinearLayout);
 
 			FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 			UserEntryDialogFragment userEntryDialogFragment = new UserEntryDialogFragment();
-			UserEntryDialogFragment.setButton(newButton);
+			userEntryDialogFragment.initialize(textView);
 
 			userEntryDialogFragment.show(fragmentTransaction, getString(R.string.userEntryDialogFragmentTag));
+			userEntryDialogFragment.setTextView(textView);
 
-			newButton.setOnClickListener(addButton);
-			newButton.setOnTouchListener(onTouchListener);
+//			newButton.setOnClickListener(addButton);
+//			newButton.setOnTouchListener(onTouchListener);
 		}
 
 	};
