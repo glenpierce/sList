@@ -31,9 +31,9 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		listLayout = (LinearLayout) findViewById(R.id.listLayout);
 
-		Button firstButton = new Button(this);
-		firstButton = (Button) listLayout.findViewWithTag("1");
-		firstButton.setOnClickListener(addButton);
+		TextView createButton = new TextView(this);
+		createButton = (TextView) listLayout.findViewWithTag("1");
+		createButton.setOnClickListener(addButton);
 
 		buttonCount = 1;
 	}
@@ -45,8 +45,6 @@ public class MainActivity extends Activity
 		{
 			buttonCount++;
 
-//			Button newButton = new Button(MainActivity.this);
-
 			LinearLayout newLinearLayout;
 			newLinearLayout = new LinearLayout(getApplicationContext());
 			LayoutInflater inflater = MainActivity.this.getLayoutInflater();
@@ -54,15 +52,10 @@ public class MainActivity extends Activity
 			newLinearLayout = (LinearLayout) layoutView.findViewById(R.id.newlinearlayout);
 
 			TextView textView = (TextView) layoutView.findViewById(R.id.textview);
-			Log.i("asdf at textview init", textView.getText().toString());
 
-//			newButton.setTag(Integer.toString(buttonCount));
 			newLinearLayout.setTag(Integer.toString(buttonCount));
-
-//			newButton.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			newLinearLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
-//			listLayout.addView(newButton);
 			listLayout.addView(newLinearLayout);
 
 			FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -72,8 +65,7 @@ public class MainActivity extends Activity
 			userEntryDialogFragment.show(fragmentTransaction, getString(R.string.userEntryDialogFragmentTag));
 			userEntryDialogFragment.setTextView(textView);
 
-//			newButton.setOnClickListener(addButton);
-//			newButton.setOnTouchListener(onTouchListener);
+			newLinearLayout.setOnTouchListener(onTouchListener);
 		}
 
 	};

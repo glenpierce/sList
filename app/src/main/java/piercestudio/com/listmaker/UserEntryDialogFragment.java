@@ -13,14 +13,20 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.util.Log;
-
+import android.widget.TextView;
+import android.content.Context;
+import android.content.ContextWrapper;
 
 
 public class UserEntryDialogFragment extends DialogFragment {
 
-    public static final Bundle args = new Bundle();
+	public void initialize(TextView textView){
 
-	static Button mButton;
+		this.mTextView = textView;
+
+	}
+
+	TextView mTextView;
 
 
     @Override
@@ -28,20 +34,20 @@ public class UserEntryDialogFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.entry_dialog, null);
+        View dialogView = inflater.inflate(R.layout.entry_dialog, null);
 
-		final EditText editText = (EditText) v.findViewById(R.id.entryDialogEditText);
+		final EditText editText = (EditText) dialogView.findViewById(R.id.entryDialogEditText);
 		editText.requestFocus();
 
 //        v.setOnTouchListener(onTouchListener);
 
-		builder.setView(v);
+		builder.setView(dialogView);
 
 
         builder.setMessage(R.string.entry)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-						mButton.setText(editText.getText().toString());
+						mTextView.setText(editText.getText().toString());
 						dismiss();
                     }
                 })
@@ -50,7 +56,6 @@ public class UserEntryDialogFragment extends DialogFragment {
                         dismiss();
 					}
                 });
-        // Create the AlertDialog object and return it
 
 		Dialog dialog = builder.create();
 		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_MODE_CHANGED);
@@ -58,8 +63,8 @@ public class UserEntryDialogFragment extends DialogFragment {
         return dialog;
     }
 
-	static public void setButton(Button button){
-		mButton = button;
+	public void setTextView(TextView textView){
+		textView = mTextView;
 	}
 
 }
