@@ -16,8 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:tag="1"
-        android:textSize="25sp"
+        android:textSize="40sp"
         android:gravity="center"
+        android:textColor="#AAAAAA"
+        android:background="@drawable/new_list_button2"
         android:text="Tap here to add a new item"/>
 
     </LinearLayout>

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.util.Log;
@@ -21,7 +20,7 @@ public class MainActivity extends Activity
 
 	LinearLayout listLayout;
 	int buttonCount;
-	float startingX, endingX;
+	float onDownX;
 
 
 	@Override
@@ -30,6 +29,9 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		listLayout = (LinearLayout) findViewById(R.id.listLayout);
+
+		// Hide the status bar.
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 
 		TextView createButton = new TextView(this);
 		createButton = (TextView) listLayout.findViewWithTag("1");
@@ -82,28 +84,26 @@ public class MainActivity extends Activity
 			switch (maskedAction)
 			{
 
-				case MotionEvent.ACTION_DOWN:
-				case MotionEvent.ACTION_POINTER_DOWN:
-				{
-					startingX = event.getX();
-					downTime = System.currentTimeMillis();
-					break;
-				}
 				case MotionEvent.ACTION_UP:
 				case MotionEvent.ACTION_POINTER_UP:
 				{
-					if (startingX - event.getX() > 200){
+					Log.i("asdf", "up");
+					Log.i("asdf", String.valueOf(SystemClock.currentThreadTimeMillis()));
+					if (event.getX() - onDownX > 200){
 						((ViewGroup)v.getParent()).removeView(v);
 					}
-					Log.i("asdf", String.valueOf(SystemClock.currentThreadTimeMillis()));
-					downTime = SystemClock.currentThreadTimeMillis() - downTime;
-					if(downTime > 200 && downTime != 0L){
-						Log.i("asdf", String.valueOf(downTime));
-					}
+					break;
 				}
-
+				case MotionEvent.ACTION_DOWN:
+				case MotionEvent.ACTION_POINTER_DOWN:
+				{
+					Log.i("asdf", "down");
+					onDownX = event.getX();
+					downTime = System.currentTimeMillis();
+					break;
+				}
 			}
-			return false;
+			return true;
 		}
 	};
 }

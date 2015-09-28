@@ -20,15 +20,16 @@ import android.content.ContextWrapper;
 
 public class UserEntryDialogFragment extends DialogFragment {
 
-	public void initialize(TextView textView){
-
-		this.mTextView = textView;
-
-	}
-
 	TextView mTextView;
 
+	public void initialize(TextView textView){
+		this.mTextView = textView;
+	}
 
+	public void setTextView(TextView textView){
+		textView = mTextView;
+	}
+	
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -38,8 +39,6 @@ public class UserEntryDialogFragment extends DialogFragment {
 
 		final EditText editText = (EditText) dialogView.findViewById(R.id.entryDialogEditText);
 		editText.requestFocus();
-
-//        v.setOnTouchListener(onTouchListener);
 
 		builder.setView(dialogView);
 
@@ -62,9 +61,4 @@ public class UserEntryDialogFragment extends DialogFragment {
 
         return dialog;
     }
-
-	public void setTextView(TextView textView){
-		textView = mTextView;
-	}
-
 }

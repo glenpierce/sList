@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle" >
+
+    <!-- view background color -->
+    <!--<solid-->
+    <!--android:color="">-->
+    <!--</solid>-->
+
+    <gradient
+        android:startColor="#006499"
+        android:endColor="#0093d5"
+        android:angle="90"
+        >
+
+    </gradient>
+
+    <corners
+        android:radius="10dp">
+    </corners>
+
+    <!--<size-->
+    <!--android:width="4dp"-->
+    <!--android:height="4dp"/>-->
+
+    <!-- view border color and width -->
+    <stroke
+    android:width="3dp"
+    android:color="#FFFFFF">
+    </stroke>
+
+</shape>
