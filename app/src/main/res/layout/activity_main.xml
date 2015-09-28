@@ -19,7 +19,7 @@
         android:textSize="40sp"
         android:gravity="center"
         android:textColor="#AAAAAA"
-        android:background="@drawable/new_list_button2"
+        android:background="@drawable/new_list_button"
         android:text="Tap here to add a new item"/>
 
     </LinearLayout>

@@ -10,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.util.Log;
 import android.widget.TextView;
-import android.content.Context;
-import android.content.ContextWrapper;
-
+import android.text.TextWatcher;
+import android.text.Editable;
 
 public class UserEntryDialogFragment extends DialogFragment {
 
@@ -43,21 +41,52 @@ public class UserEntryDialogFragment extends DialogFragment {
 		builder.setView(dialogView);
 
 
-        builder.setMessage(R.string.entry)
-                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-						mTextView.setText(editText.getText().toString());
-						dismiss();
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dismiss();
-					}
-                });
+        builder.setMessage(R.string.new_header);
+
+//                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener()
+//				{
+//					public void onClick(DialogInterface dialog, int id)
+//					{
+//						mTextView.setText(editText.getText().toString());
+//						dismiss();
+//					}
+//				})
+//                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
+//				{
+//					public void onClick(DialogInterface dialog, int id)
+//					{
+//						dismiss();
+//					}
+//				});
+
+//		builder.setMessage(null)
+//		.setPositiveButton(null, null)
+//		.setNegativeButton(null, null);
 
 		Dialog dialog = builder.create();
 		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_MODE_CHANGED);
+
+		editText.addTextChangedListener(new TextWatcher()
+		{
+
+			@Override
+			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3)
+			{
+				if (cs.toString().contains("\n")) {
+				mTextView.setText(editText.getText().toString());
+				dismiss();
+			}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3)
+			{
+			}
+
+			@Override
+			public void afterTextChanged(Editable arg0) { }
+
+		});
 
         return dialog;
     }

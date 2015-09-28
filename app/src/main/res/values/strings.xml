@@ -4,7 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
-    <string name="entry">Entry</string>
+    <string name="new_header">New Header</string>
     <string name="userentrykey">User Entry Key</string>
     <string name="userEntryDialogFragmentTag">User Entry Dialog Fragment Tag</string>
 </resources>
