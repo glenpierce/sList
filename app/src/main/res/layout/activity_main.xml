@@ -13,14 +13,16 @@
         android:id="@+id/listLayout">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:tag="1"
         android:textSize="40sp"
         android:gravity="center"
-        android:textColor="#AAAAAA"
-        android:background="@drawable/new_list_button"
-        android:text="Tap here to add a new item"/>
+        android:layout_margin="5dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/addbutton"
+        android:text="+"/>
 
     </LinearLayout>
 

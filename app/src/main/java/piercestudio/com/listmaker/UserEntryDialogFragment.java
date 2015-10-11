@@ -73,9 +73,9 @@ public class UserEntryDialogFragment extends DialogFragment {
 			public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3)
 			{
 				if (cs.toString().contains("\n")) {
-				mTextView.setText(editText.getText().toString());
-				dismiss();
-			}
+					mTextView.setText(cs.toString().substring(0, cs.toString().length()-1));
+					dismiss();
+				}
 			}
 
 			@Override
