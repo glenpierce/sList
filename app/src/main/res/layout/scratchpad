@@ -1,0 +1,56 @@
+//
+//	View.OnTouchListener onTouchListener = new View.OnTouchListener()
+//	{
+//		@Override
+//		public boolean onTouch(View v, MotionEvent event)
+//		{
+//
+//			Long downTime = 0L;
+//			int maskedAction = event.getActionMasked();
+//
+//			switch (maskedAction)
+//			{
+//				case MotionEvent.ACTION_DOWN:
+//				case MotionEvent.ACTION_POINTER_DOWN:
+//				{
+//					Log.i("asdf", "down");
+//					onDownX = event.getX();
+//					downTime = System.currentTimeMillis();
+//					break;
+//				}
+//
+//				case MotionEvent.ACTION_UP:
+//				case MotionEvent.ACTION_POINTER_UP:
+//				{
+//					Log.i("asdf", "up");
+//					if (event.getX() - onDownX > 200){
+//						((ViewGroup)v.getParent()).removeView(v);
+//						break;
+//					}
+//					if(System.currentTimeMillis() - downTime > 200){
+////						addNewItem((LinearLayout) v);
+//						addNewItemFromView(v);
+//					}
+//
+//					break;
+//				}
+//			}
+//			return true;
+//		}
+//	};
+//
+//	public void addNewItemFromView(View v){
+//		TextView newTextView;
+//		newTextView = new TextView(getApplicationContext());
+//		LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+//		View layoutView = inflater.inflate(R.layout.textview, null);
+//		TextView textView = (TextView) layoutView.findViewById(R.id.new_item_textview);
+//		LinearLayout newItem = (LinearLayout) layoutView.findViewById(R.id.new_item);
+//
+//		setTextViewText(textView);
+//
+//		((ViewGroup)v.getParent()).addView(layoutView);
+//
+//		layoutView.setOnTouchListener(onTouchListener);
+//	}
+//}

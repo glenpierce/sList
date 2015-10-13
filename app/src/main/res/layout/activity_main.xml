@@ -4,25 +4,47 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+            android:background="#216DFF"
+            android:id="@+id/scrollView"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/listLayout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextAndButtonLayout"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:tag="1"
-        android:textSize="40sp"
-        android:gravity="center"
-        android:layout_margin="5dp"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/addbutton"
-        android:text="+"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/layoutInsideScrollView">
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:labelFor="@+id/editText"
+                android:inputType="text"
+                android:layout_gravity="center"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:fontFamily=""
+                android:textColor="#FFFFFF"
+                android:background="#00FFFFFF"
+                android:textCursorDrawable="@drawable/blinking_cursor"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Add To Do"
+            android:id="@+id/addNewToDoButon"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="#00FFFFFF"/>
 
     </LinearLayout>
 
