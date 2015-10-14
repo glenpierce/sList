@@ -16,6 +16,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ArrayAdapter;
+import android.graphics.Typeface;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity
 {
 
+	static Typeface typeface;
 	ArrayList<String> arrayList;
 	ArrayAdapter adapter;
 
@@ -33,20 +35,12 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-//		Typeface typeface
-//				= Typeface.createFromAsset(getAssets(), "Ruthie.ttf");
-//		textView.setTypeface(typeface);
+		typeface = Typeface.createFromAsset(getAssets(), "Roboto-Thin.ttf");
 
-		Intent intent = getIntent();
-		final ArrayList<String> newArray = intent.getStringArrayListExtra("key");
-
+		final EditText editText = (EditText) findViewById(R.id.editText);
 		Button button = (Button) findViewById(R.id.addNewToDoButon);
 		ListView listView = (ListView) findViewById(R.id.listView);
 		arrayList = new ArrayList<String>();
-
-		if (newArray != null){
-			arrayList = newArray;
-		}
 
 		adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_layout, arrayList);
 
@@ -57,9 +51,9 @@ public class MainActivity extends Activity
 			@Override
 			public void onClick(View view)
 			{
-				Intent intent = new Intent(MainActivity.this, AddItem.class);
-				intent.putStringArrayListExtra("key", arrayList);
-				startActivity(intent);
+				adapter.add(editText.getText().toString());
+
+				editText.setText("");
 			}
 		});
 	}
