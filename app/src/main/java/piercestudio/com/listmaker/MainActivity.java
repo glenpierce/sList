@@ -1,6 +1,7 @@
 package piercestudio.com.listmaker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.widget.ArrayAdapter;
@@ -22,8 +23,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity
 {
 
-	EditText editText;
-	ArrayList arrayList;
+	ArrayList<String> arrayList;
 	ArrayAdapter adapter;
 
 	@Override
@@ -33,14 +33,19 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		editText = (EditText) findViewById(R.id.editText);
+		Intent intent = getIntent();
+		final ArrayList<String> newArray = intent.getStringArrayListExtra("key");
+
 		Button button = (Button) findViewById(R.id.addNewToDoButon);
 		ListView listView = (ListView) findViewById(R.id.listView);
 		arrayList = new ArrayList<String>();
 
+		if (newArray != null){
+			arrayList = newArray;
+		}
+
 		adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
 
-		// Here, you set the data in your ListView
 		listView.setAdapter(adapter);
 
 		button.setOnClickListener(new View.OnClickListener()
@@ -48,10 +53,9 @@ public class MainActivity extends Activity
 			@Override
 			public void onClick(View view)
 			{
-
-//				arrayList.add(editText.getText().toString());
-				adapter.add(editText.getText().toString());
-				editText.setText("");
+				Intent intent = new Intent(MainActivity.this, AddItem.class);
+				intent.putStringArrayListExtra("key", arrayList);
+				startActivity(intent);
 			}
 		});
 	}

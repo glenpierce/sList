@@ -6,45 +6,22 @@
     android:orientation="vertical"
     android:background="#216DFF">
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/listView"
-                android:layout_weight="4">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="+"
+        android:textSize="40dp"
+        android:id="@+id/addNewToDoButon"
+        android:background="#22FFFFFF"
+        style="?android:attr/borderlessButtonStyle"/>
 
-            </ListView>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                android:id="@+id/userentrylayout"
-                android:layout_weight="1">
+    </ListView>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText"
-                    android:labelFor="@+id/editText"
-                    android:inputType="text"
-                    android:layout_gravity="center"
-                    android:textSize="40sp"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily=""
-                    android:textColor="#FFFFFF"
-                    android:background="#00FFFFFF"
-                    android:textCursorDrawable="@drawable/blinking_cursor"/>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FFFFFF"
-                    android:text="Add To Do"
-                    android:id="@+id/addNewToDoButon"
-                    android:background="#22FFFFFF"
-                    style="?android:attr/borderlessButtonStyle"/>
-
-    </LinearLayout>
 
 </LinearLayout>
