@@ -33,6 +33,10 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+//		Typeface typeface
+//				= Typeface.createFromAsset(getAssets(), "Ruthie.ttf");
+//		textView.setTypeface(typeface);
+
 		Intent intent = getIntent();
 		final ArrayList<String> newArray = intent.getStringArrayListExtra("key");
 
@@ -44,7 +48,7 @@ public class MainActivity extends Activity
 			arrayList = newArray;
 		}
 
-		adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
+		adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_layout, arrayList);
 
 		listView.setAdapter(adapter);
 
