@@ -3,86 +3,56 @@ package piercestudio.com.listmaker;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Layout;
-import android.view.KeyEvent;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.view.ViewGroup.LayoutParams;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends Activity
 {
-	String TAG = "buttonTestTag";
 
-	int buttonCount = 0;
-
+	EditText editText;
+	ArrayList arrayList;
+	ArrayAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// Hide the status bar.
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		LinearLayout linearLayoutInScrollView = (LinearLayout) findViewById(R.id.linearLayoutInScrollView);
+		editText = (EditText) findViewById(R.id.editText);
+		Button button = (Button) findViewById(R.id.addNewToDoButon);
+		ListView listView = (ListView) findViewById(R.id.listView);
+		arrayList = new ArrayList<String>();
 
-		EditText editText = (EditText) findViewById(R.id.editText);
-		editText.setText("asdf");
+		adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
 
-		Button addNewToDo = (Button) findViewById(R.id.addNewToDoButon);
-		OnClickListener toDoOnClickListner = createNewToDoOnClickListner();
-		addNewToDo.setOnClickListener(toDoOnClickListner);
+		// Here, you set the data in your ListView
+		listView.setAdapter(adapter);
 
-	}
-
-	public void createNewToDo()
-	{
-		buttonCount++;
-
-		LayoutInflater inflater = MainActivity.this.getLayoutInflater();
-		View layoutViewToBeAdded = inflater.inflate(R.layout.layout_to_be_added_with_new_textview, null);
-
-		LinearLayout linearLayoutToBeAddedFromEditText;
-		linearLayoutToBeAddedFromEditText = new LinearLayout(getApplicationContext());
-		linearLayoutToBeAddedFromEditText.setTag(Integer.toString(buttonCount));
-		linearLayoutToBeAddedFromEditText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
-		TextView newToDo;
-		newToDo = new TextView(getApplicationContext());
-		newToDo = (TextView) layoutViewToBeAdded.findViewById(R.id.newToDoTextView);
-		newToDo.setTag(Integer.toString(buttonCount));
-
-		View layoutViewMain = inflater.inflate(R.layout.activity_main, null);
-
-		EditText editText = (EditText) layoutViewMain.findViewById(R.id.editText);
-		newToDo.setText(editText.getText().toString());
-		editText.setText("");
-
-		LinearLayout linearLayoutInScrollView = (LinearLayout) layoutViewMain.findViewById(R.id.linearLayoutInScrollView);
-
-		linearLayoutInScrollView.addView(layoutViewToBeAdded);
-	}
-
-
-
-	public OnClickListener createNewToDoOnClickListner(){
-		OnClickListener newOnClickListner = new OnClickListener()
+		button.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
-			public void onClick(View v)
+			public void onClick(View view)
 			{
-				createNewToDo();
+
+//				arrayList.add(editText.getText().toString());
+				adapter.add(editText.getText().toString());
+				editText.setText("");
 			}
-		};
-		return newOnClickListner;
+		});
 	}
 }
