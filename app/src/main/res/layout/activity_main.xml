@@ -22,10 +22,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:layout_gravity="center|top"
-        android:textSize="40sp"
+        android:textSize="40dp"
         android:gravity="left"
         android:layout_margin="5dp"
-        android:fontFamily=""
         android:textColor="#FFFFFF"
         android:background="#218DFF"
         android:textCursorDrawable="@drawable/blinking_cursor"/>
@@ -39,7 +38,7 @@
         android:textColor="#FFFFFF"
         android:layout_margin="5dp"
         android:text="+"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:id="@+id/addNewToDoButon"
         android:background="#218DFF"
         style="?android:attr/borderlessButtonStyle"/>

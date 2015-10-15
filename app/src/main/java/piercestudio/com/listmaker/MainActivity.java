@@ -24,7 +24,8 @@ import java.util.ArrayList;
 public class MainActivity extends Activity
 {
 
-	static Typeface typeface;
+	static Typeface robotoThin;
+	static Typeface samplefont;
 	ArrayList<String> arrayList;
 	ArrayAdapter adapter;
 
@@ -35,14 +36,18 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		typeface = Typeface.createFromAsset(getAssets(), "Roboto-Thin.ttf");
+		robotoThin = Typeface.createFromAsset(getAssets(), "Roboto-Thin.ttf");
+		samplefont = Typeface.createFromAsset(getAssets(), "samplefont.ttf");
 
 		final EditText editText = (EditText) findViewById(R.id.editText);
+		editText.setTypeface(robotoThin);
+
 		Button button = (Button) findViewById(R.id.addNewToDoButon);
 		ListView listView = (ListView) findViewById(R.id.listView);
 		arrayList = new ArrayList<String>();
 
 		adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.listview_layout, arrayList);
+
 
 		listView.setAdapter(adapter);
 
